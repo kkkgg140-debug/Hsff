@@ -15,7 +15,7 @@ CONFIG_HS = {
 
 @app.route('/')
 def home():
-    # Se existir o index.html, ele mostra o site. Se não, mostra o JSON.
+    # Verifica se o index.html existe para mostrar o site, senão mostra o JSON
     if os.path.exists('index.html'):
         return send_from_directory('.', 'index.html')
     return jsonify(CONFIG_HS)
@@ -24,7 +24,7 @@ def home():
 def config():
     return jsonify(CONFIG_HS)
 
-import os
-   if __name__ == '__main__':
-       port = int(os.environ.get("PORT", 8080))
-       app.run(host='0.0.0.0', port=port)
+if __name__ == '__main__':
+    # CORREÇÃO AQUI: O Railway define a porta automaticamente
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port)
